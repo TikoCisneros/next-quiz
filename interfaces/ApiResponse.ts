@@ -10,3 +10,7 @@ export interface AnswerResp {
   right: boolean;
   shown: boolean;
 }
+
+export interface MessageResp {
+  message: string;
+}

@@ -1,15 +1,27 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import APP_SURVEY from '../../../data/Survey';
-import { QuestionResp } from './../../../interfaces/ApiResponse';
+import { QuestionResp, MessageResp } from './../../../interfaces/ApiResponse';
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<QuestionResp>
+  res: NextApiResponse<QuestionResp | MessageResp>
 ) {
-  const { query: { id } } = req;
+  const { method } = req;
 
-  console.info('ID', id);
+  if (method !== 'GET') {
+    res.status(405).send({ message: 'Method Not Allowed!' });
+    return;
+  }
 
-  res.status(200).json(APP_SURVEY[0].toObject());
+  const { query: { id: questionId } } = req
+
+  const filteredQuestions = APP_SURVEY.filter((question) => question.id === +questionId);
+
+  if (filteredQuestions.length === 1) {
+    res.status(200).json(filteredQuestions[0].toObject());
+    return;
+  }
+
+  res.status(404).send({ message: 'Question not found!' });
 }
