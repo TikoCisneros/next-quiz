@@ -19,7 +19,7 @@ export default function handler(
   const filteredQuestions = APP_SURVEY.filter((question) => question.id === +questionId);
 
   if (filteredQuestions.length === 1) {
-    res.status(200).json(filteredQuestions[0].toObject());
+    res.status(200).json(filteredQuestions[0].shuffleAnswers().toObject());
     return;
   }
 

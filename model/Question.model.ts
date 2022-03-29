@@ -1,6 +1,8 @@
 import AnswerModel from './Answer.model';
 import { QuestionResp } from '../interfaces/ApiResponse';
 
+import { shuffle } from './../helpers/Arrays';
+
 export default class QuestionModel {
   #id: number;
   #question: string;
@@ -34,6 +36,10 @@ export default class QuestionModel {
 
   get wasReplied(): boolean {
     return this.#answers.some((answer) => answer.wasShown);
+  }
+
+  shuffleAnswers(): QuestionModel {
+    return new QuestionModel(this.#id, this.#question, shuffle(this.#answers));
   }
 
   toObject(): QuestionResp {
