@@ -3,12 +3,12 @@ import { AnswerResp } from '../interfaces/ApiResponse';
 export default class AnswerModel {
   #value: string;
   #right: boolean;
-  #shown: boolean;
+  #show: boolean;
 
-  constructor(value: string, right: boolean, shown: boolean = false) {
+  constructor(value: string, right: boolean, show: boolean = false) {
     this.#value = value;
     this.#right = right;
-    this.#shown = shown;
+    this.#show = show;
   }
 
   static right(value: string): AnswerModel {
@@ -23,19 +23,23 @@ export default class AnswerModel {
     return this.#value;
   }
 
-  get isRightAnswer(): boolean {
+  get isRight(): boolean {
     return this.#right;
   }
 
   get wasShown(): boolean {
-    return this.#shown;
+    return this.#show;
+  }
+
+  showed(): AnswerModel {
+    return new AnswerModel(this.#value, this.#right, true);
   }
 
   toObject(): AnswerResp {
     return {
       value: this.#value,
       right: this.#right,
-      shown: this.#shown,
+      show: this.#show,
     };
   }
 }

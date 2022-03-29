@@ -2,13 +2,14 @@ export interface QuestionResp {
   id: number;
   question: string;
   answers: AnswerResp[];
-  correct: boolean;
+  guessed: boolean;
+  replied: boolean;
 }
 
 export interface AnswerResp {
   value: string;
   right: boolean;
-  shown: boolean;
+  show: boolean;
 }
 
 export interface MessageResp {
