@@ -1,4 +1,5 @@
 import AnswerModel from './Answer.model';
+import { QuestionResp } from '../interfaces/ApiResponse';
 
 export default class QuestionModel {
   #id: number;
@@ -33,5 +34,14 @@ export default class QuestionModel {
 
   get wasReplied(): boolean {
     return this.#answers.some((answer) => answer.wasShown);
+  }
+
+  toObject(): QuestionResp {
+    return {
+      id: this.#id,
+      question: this.#question,
+      answers: this.#answers.map(answer => answer.toObject()),
+      correct: this.#correct,
+    };
   }
 }
