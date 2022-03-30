@@ -7,7 +7,7 @@ export interface QuestionResp {
 }
 
 export interface AnswerResp {
-  value: string;
+  text: string;
   right: boolean;
   show: boolean;
 }
