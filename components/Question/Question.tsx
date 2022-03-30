@@ -1,12 +1,16 @@
 import Answer from './Answer';
 import Statement from './Statement';
 
-interface QuestionProps {}
+import QuestionModel from '../../model/Question.model';
 
-const Question = (props: QuestionProps) => {
+interface QuestionProps {
+  data: QuestionModel;
+}
+
+const Question = ({ data }: QuestionProps) => {
   return (
-    <div className="flex flex-col">
-      <Statement />
+    <div className="flex flex-col items-center">
+      <Statement text={data.question} />
       <Answer />
     </div>
   )

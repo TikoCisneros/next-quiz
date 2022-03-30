@@ -1,8 +1,12 @@
-interface StatementProps {}
+interface StatementProps {
+  text: string;
+}
 
-const Statement = (props: StatementProps) => {
+const Statement = ({ text }: StatementProps) => {
   return (
-    <div>Statement</div>
+    <div className="flex font-bold text-4xl text-center max-w-3xl mb-7">
+      <span>{text}</span>
+    </div>
   )
 }
 
