@@ -41,7 +41,7 @@ export default class QuestionModel {
   }
 
   answerQuestion(index: number): QuestionModel {
-    const isRightAnswer = this.#answers[index].isRight;
+    const isRightAnswer = this.#answers[index]?.isRight;
 
     const answers = this.#answers.map((answer, i) => {
       if (index === i || answer.isRight) {

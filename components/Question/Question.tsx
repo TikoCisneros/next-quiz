@@ -1,19 +1,19 @@
 import Statement from './Statement';
 import Answer from './Answer';
+import Countdown from './Countdown';
 
 import QuestionModel from '../../model/Question.model';
-import Countdown from '../Countdown';
 
 const LITERALS = ['A', 'B', 'C', 'D'];
 
 interface QuestionProps {
   data: QuestionModel;
   onAnswerClick: (index: number) => void;
-  countdownTime: number;
+  countdownTime?: number;
   onCountdownComplete: () => void;
 }
 
-const Question = ({ data, onAnswerClick, countdownTime, onCountdownComplete }: QuestionProps) => {
+const Question = ({ data, onAnswerClick, countdownTime = 60, onCountdownComplete }: QuestionProps) => {
   return (
     <div className="flex flex-col items-center">
       <Statement text={data.question} />

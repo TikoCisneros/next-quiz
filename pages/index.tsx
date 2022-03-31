@@ -7,7 +7,7 @@ import APP_SURVEY from '../data/Survey';
 const Home: NextPage = () => {
   const [question, setQuestion] = useState(APP_SURVEY[3])
 
-  const handleCountdownComplete = () => question.wasNotReplied && setQuestion(question.answerQuestion(0));
+  const handleCountdownComplete = () => question.wasNotReplied && setQuestion(question.answerQuestion(-1));
 
   return (
     <Question

@@ -1,5 +1,5 @@
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import { toTimeFormat } from '../helpers/Time';
+import { toTimeFormat } from '../../helpers/Time';
 
 interface CountdownProps {
   duration: number;
