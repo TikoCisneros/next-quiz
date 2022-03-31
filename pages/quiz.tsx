@@ -6,6 +6,7 @@ import QuestionModel from '../model/Question.model';
 
 import { fetchQuestionByID, fetchSurvey } from '../api';
 import Loader from '../components/common/Loader';
+import { createAdaptedQuestion } from '../adapters/Quiz';
 
 const Quiz: NextPage = () => {
   const [survey, setSurvey] = useState<number[]>([]);
@@ -27,7 +28,7 @@ const Quiz: NextPage = () => {
 
   const loadQuestion = async (id: number) => {
     const { data } = await fetchQuestionByID(id);
-    console.info(data);
+    setQuestion(createAdaptedQuestion(data));
   }
 
   const handleAnswerQuestion = (question: QuestionModel) => {};
