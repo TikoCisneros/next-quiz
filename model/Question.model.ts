@@ -36,6 +36,10 @@ export default class QuestionModel {
     return this.#answers.some((answer) => answer.wasShown);
   }
 
+  get wasNotReplied() : boolean {
+    return !this.wasReplied;
+  }
+
   answerQuestion(index: number): QuestionModel {
     const isRightAnswer = this.#answers[index].isRight;
 

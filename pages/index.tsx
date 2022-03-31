@@ -7,7 +7,16 @@ import APP_SURVEY from '../data/Survey';
 const Home: NextPage = () => {
   const [question, setQuestion] = useState(APP_SURVEY[3])
 
-  return (<Question data={question} onAnswerClick={(index) => setQuestion(question.answerQuestion(index))} />);
+  const handleCountdownComplete = () => question.wasNotReplied && setQuestion(question.answerQuestion(0));
+
+  return (
+    <Question
+      data={question}
+      onAnswerClick={(index) => setQuestion(question.answerQuestion(index))}
+      countdownTime={10}
+      onCountdownComplete={handleCountdownComplete}
+    />
+  );
 }
 
 export default Home
