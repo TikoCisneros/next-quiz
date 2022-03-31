@@ -15,12 +15,7 @@ const Quiz = ({
   onAnswer,
   onNextStep,
 }: QuizProps) => {
-  const handleAnswerClick = (index: number) =>
-    question.wasNotReplied && onAnswer(question.answerQuestion(index));
-
-  if (!question) {
-    return <span className="text-9xl">Loading...</span>;
-  }
+  const handleAnswerClick = (index: number) => question.wasNotReplied && onAnswer(question.answerQuestion(index));
 
   return (
     <>

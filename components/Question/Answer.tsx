@@ -7,7 +7,7 @@ interface AnswerTextProps {
 }
 
 const AnswerText = ({ text, isBack }: AnswerTextProps) => (
-  <span className={`${ isBack ? 'text-3xl' : 'text-xl'} font-bold ml-4 text-slate-700`}>
+  <span className={`${ isBack ? 'text-3xl' : 'text-xl'} flex flex-1 font-bold ml-4 text-slate-700`}>
     {text}
   </span>
 );
