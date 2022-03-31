@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
+import Button from '../components/common/Button';
 
 import Question from '../components/Question';
 import APP_SURVEY from '../data/Survey';
@@ -10,13 +11,16 @@ const Home: NextPage = () => {
   const handleCountdownComplete = () => question.wasNotReplied && setQuestion(question.answerQuestion(-1));
 
   return (
-    <Question
-      data={question}
-      onAnswerClick={(index) => setQuestion(question.answerQuestion(index))}
-      countdownTime={10}
-      onCountdownComplete={handleCountdownComplete}
-    />
+    <>
+      <Question
+        data={question}
+        onAnswerClick={(index) => setQuestion(question.answerQuestion(index))}
+        countdownTime={10}
+        onCountdownComplete={handleCountdownComplete}
+      />
+      <Button text="Next" href="/score"/>
+    </>
   );
 }
 
-export default Home
+export default Home;

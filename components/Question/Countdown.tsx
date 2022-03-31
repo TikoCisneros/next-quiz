@@ -13,7 +13,7 @@ const Countdown = ({ duration, onComplete }: CountdownProps) => {
         isPlaying
         size={100}
         colors={['#22c55e', '#facc15', '#f87171', '#ef4444']}
-        colorsTime={[duration / 2, duration / 4, duration / 5, 0]}
+        colorsTime={[duration / 2, duration / 3, duration / 5, 0]}
         duration={duration}
         onComplete={onComplete}
       >
