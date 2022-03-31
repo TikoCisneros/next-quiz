@@ -4,33 +4,31 @@ import { useEffect, useState } from 'react';
 import QuizComponent from '../components/Quiz';
 import QuestionModel from '../model/Question.model';
 
-import APP_SURVEY from '../data/Survey';
-import { fetchQuestionByID, fetchSurvey } from '../helpers/Api';
+import { fetchQuestionByID, fetchSurvey } from '../api';
 import Loader from '../components/common/Loader';
 
 const Quiz: NextPage = () => {
   const [survey, setSurvey] = useState<number[]>([]);
   const [question, setQuestion] = useState<QuestionModel | null>(null);
 
+  useEffect(() => {
+    if (survey.length > 0) {
+      loadQuestion(survey[0]);
+      return;
+    }
+
+    loadSurvey();
+  }, [survey]);
+
   const loadSurvey = async () => {
     const { data } = await fetchSurvey();
     setSurvey(data);
   }
 
-  useEffect(() => {
-    loadSurvey();
-  }, []);
-
   const loadQuestion = async (id: number) => {
     const { data } = await fetchQuestionByID(id);
     console.info(data);
   }
-
-  useEffect(() => {
-    if (survey.length > 0) {
-      loadQuestion(survey[0]);
-    }
-  }, [survey]);
 
   const handleAnswerQuestion = (question: QuestionModel) => {};
 
