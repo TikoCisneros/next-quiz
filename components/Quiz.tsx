@@ -2,6 +2,8 @@ import Question from './Question';
 import Button from './common/Button';
 import QuestionModel from '../model/Question.model';
 
+const COUNTDOWN_TIME = 10;
+
 interface QuizProps {
   question: QuestionModel;
   isLastQuestion: boolean;
@@ -22,7 +24,7 @@ const Quiz = ({
       <Question
         data={question}
         onAnswerClick={handleAnswerClick}
-        countdownTime={10}
+        countdownTime={COUNTDOWN_TIME}
         onCountdownComplete={onNextStep}
       />
       <Button text={isLastQuestion ? 'Finish' : 'Next'} onClick={onNextStep} />

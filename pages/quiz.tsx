@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import QuizComponent from '../components/Quiz';
@@ -7,23 +8,25 @@ import QuestionModel from '../model/Question.model';
 import { fetchQuestionByID, fetchSurvey } from '../api';
 import Loader from '../components/common/Loader';
 import { createAdaptedQuestion } from '../adapters/Quiz';
+import { getNextQuestionID, isLastQuestion } from '../helpers/Quiz';
 
 const Quiz: NextPage = () => {
-  const [survey, setSurvey] = useState<number[]>([]);
+  const [surveyIDs, setSurveyIDs] = useState<number[]>([]);
   const [question, setQuestion] = useState<QuestionModel | null>(null);
+  const [rightAnswers, setRightAnswers] = useState<number>(0);
+  const { push } = useRouter();
 
   useEffect(() => {
-    if (survey.length > 0) {
-      loadQuestion(survey[0]);
+    if (surveyIDs.length > 0) {
+      loadQuestion(surveyIDs[0]);
       return;
     }
-
     loadSurvey();
-  }, [survey]);
+  }, [surveyIDs]);
 
   const loadSurvey = async () => {
     const { data } = await fetchSurvey();
-    setSurvey(data);
+    setSurveyIDs(data);
   }
 
   const loadQuestion = async (id: number) => {
@@ -31,18 +34,34 @@ const Quiz: NextPage = () => {
     setQuestion(createAdaptedQuestion(data));
   }
 
-  const handleAnswerQuestion = (question: QuestionModel) => {};
+  const handleAnswerQuestion = (question: QuestionModel) => {
+    if (question.wasGuessed)  {
+      setRightAnswers(rightAnswers + 1);
+    }
+    setQuestion(question);
+  }
 
-  const handleNextStep = () => {};
+  const handleNextStep = () => {
+    const nextQuestionID = getNextQuestionID(surveyIDs, question!.id);
+    if (nextQuestionID) {
+      goToNextQuestion(nextQuestionID);
+      return;
+    }
+    exitQuiz();
+  };
 
-  if (!question) {
+  const goToNextQuestion = (id: number) => loadQuestion(id);
+
+  const exitQuiz = () => push({ pathname: '/score', query: { totalQuestions: surveyIDs.length,  rightAnswers } });
+
+  if (surveyIDs.length === 0 || !question) {
     return <Loader />;
   }
 
   return (
     <QuizComponent
       question={question}
-      isLastQuestion={false}
+      isLastQuestion={isLastQuestion(surveyIDs, question.id)}
       onAnswer={handleAnswerQuestion}
       onNextStep={handleNextStep}
     />
