@@ -2,7 +2,7 @@ import Question from './Question';
 import Button from './common/Button';
 import QuestionModel from '../model/Question.model';
 
-const COUNTDOWN_TIME = 10;
+const COUNTDOWN_TIME = 90;
 
 interface QuizProps {
   question: QuestionModel;
