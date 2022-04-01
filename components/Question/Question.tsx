@@ -24,7 +24,7 @@ const Question = ({ data, onAnswerClick, countdownTime = 60, onCountdownComplete
       />
       {data.answers.map((answer, index) => (
         <Answer
-          key={`a-${index}`}
+          key={`a-${data.id}-${index}`}
           data={answer}
           index={index}
           literal={LITERALS[index]}
