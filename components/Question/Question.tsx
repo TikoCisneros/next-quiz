@@ -17,7 +17,11 @@ const Question = ({ data, onAnswerClick, countdownTime = 60, onCountdownComplete
   return (
     <div className="flex flex-col items-center">
       <Statement text={data.question} />
-      <Countdown duration={countdownTime} onComplete={onCountdownComplete} />
+      <Countdown
+        key={data.id}
+        duration={countdownTime}
+        onComplete={onCountdownComplete}
+      />
       {data.answers.map((answer, index) => (
         <Answer
           key={`a-${index}`}
