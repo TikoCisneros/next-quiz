@@ -1,24 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Quiz application about ReactJS library based on [JavaPoint Survey](https://www.javatpoint.com/reactjs-mcq)
+. This app was builded with NextJS framework, Tailwind CSS and Typescript.
 
-## Getting Started
+Home | Quiz | Score |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|![Home page](https://github.com/TikoCisneros/next-survey/blob/main/assets/home.png?raw=true)|![Question](https://github.com/TikoCisneros/next-survey/blob/main/assets/question.png?raw=true)|![Score page](https://github.com/TikoCisneros/next-survey/blob/main/assets/score.png?raw=true)|
 
-First, run the development server:
+## Setup steps
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+1.- Clone this project running `git clone https://github.com/TikoCisneros/next-survey.git` in your terminal. If you haven't git installed can simply download it.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.- Install all project dependencies with `npm install` or `yarn install` command
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+3.- Run the development server with `npm run dev # or yarn dev` command.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4.- Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Original survey
-
-[https://www.javatpoint.com/reactjs-mcq](https://www.javatpoint.com/reactjs-mcq)
 
