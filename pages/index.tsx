@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
-
-import Button from '../components/common/Button';
+import HomeComponent from '../components/Home';
 
 const Home: NextPage = () => {
-  return <Button text="Start survey" href="/quiz" />;
+  return (<HomeComponent />);
 }
 
 export default Home;
